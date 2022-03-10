@@ -1,5 +1,8 @@
-<ibm-tile class="container">
+<ibm-tile class="container" (click)="getCityWeather()">
   <div class="current-time">
-    <p>{{currentDateTime | date:'E, H:mm'}}</p>
+    {{currentDateTime | date:'E, H:mm'}}
+  </div>
+  <div class="current-city" >
+    {{currentCity}}
   </div>
 </ibm-tile>

@@ -10,11 +10,15 @@
   position: absolute;
   left: 87px;
   top: 450px;
-}
-p{
-  font-family: IBM Plex Sans;
-  font-style: normal;
   font-weight: 300;
   font-size: 42px;
   line-height: 50px;
+}
+.current-city{
+  position: absolute;
+  left: 87px;
+  top: 59px;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
 }
