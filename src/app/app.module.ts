@@ -4,7 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from "@angular/forms";
 
-import {HeaderModule, TilesModule} from "carbon-components-angular"
+import {HeaderModule, TilesModule, IconModule} from "carbon-components-angular"
+import {
+  CloudModule,
+  CloudyModule,
+  FogModule,
+  PartlyCloudyModule,
+  RainModule,
+  RainScatteredModule,
+  SleetModule,
+  SnowflakeModule,
+  SnowModule,
+  SunModule,
+  SunriseModule, SunsetModule, ThunderstormModule
+} from '@carbon/icons-angular'
 
 import { AppComponent } from './app.component';
 import {HeaderComponent} from './header/header.component'
@@ -22,8 +35,22 @@ import {appRoutes} from './routes';
     ReactiveFormsModule,
     HeaderModule,
     TilesModule,
-    RouterModule.forRoot(appRoutes),
+    IconModule,
     HttpClientModule,
+    ThunderstormModule,
+    CloudModule,
+    CloudyModule,
+    FogModule,
+    SunModule,
+    RainModule,
+    SleetModule,
+    SunriseModule,
+    SunsetModule,
+    SnowModule,
+    SnowflakeModule,
+    RainScatteredModule,
+    PartlyCloudyModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]

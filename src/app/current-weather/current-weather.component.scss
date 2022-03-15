@@ -22,3 +22,28 @@
   font-size: 32px;
   line-height: 40px;
 }
+.temperature{
+  position: absolute;
+  right: 342px;
+  top: 59px;
+  font-weight: 300;
+  font-size: 54px;
+  line-height: 64px;
+}
+.description{
+  position: absolute;
+  right: 85px;
+  top: 436px;
+  font-weight: 300;
+  font-size: 54px;
+  line-height: 64px;
+}
+
+.icon{
+  position: absolute;
+  width: 335px ;
+  height: 335px ;
+  right: 64px;
+  top: 65px;
+  fill: #0F62FE;
+}
