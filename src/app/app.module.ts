@@ -2,57 +2,67 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
-import {HeaderModule, TilesModule, IconModule} from "carbon-components-angular"
 import {
-  CloudModule,
-  CloudyModule,
+  IconModule,
+  TableModule,
+  TilesModule,
+  HeaderModule,
+} from 'carbon-components-angular';
+import {
   FogModule,
-  PartlyCloudyModule,
-  RainModule,
-  RainScatteredModule,
-  SleetModule,
-  SnowflakeModule,
-  SnowModule,
   SunModule,
-  SunriseModule, SunsetModule, ThunderstormModule
-} from '@carbon/icons-angular'
+  RainModule,
+  SnowModule,
+  SleetModule,
+  CloudModule,
+  SunsetModule,
+  CloudyModule,
+  SunriseModule,
+  SnowflakeModule,
+  ThunderstormModule,
+  PartlyCloudyModule,
+  RainScatteredModule,
+} from '@carbon/icons-angular';
 
 import { AppComponent } from './app.component';
-import {HeaderComponent} from './header/header.component'
-import {CurrentWeatherComponent} from './current-weather/current-weather.component'
-import {appRoutes} from './routes';
+import { HeaderComponent } from './header/header.component';
+import { CurrentWeatherComponent } from './current-weather/current-weather.component';
+import { WeatherHistoryComponent } from './weather-history/weather-history.component';
+import { appRoutes } from './routes';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    CurrentWeatherComponent
+    CurrentWeatherComponent,
+    WeatherHistoryComponent,
   ],
   imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HeaderModule,
-    TilesModule,
-    IconModule,
-    HttpClientModule,
-    ThunderstormModule,
-    CloudModule,
-    CloudyModule,
     FogModule,
     SunModule,
+    IconModule,
     RainModule,
-    SleetModule,
-    SunriseModule,
-    SunsetModule,
     SnowModule,
+    CloudModule,
+    TilesModule,
+    SleetModule,
+    TableModule,
+    HeaderModule,
+    CloudyModule,
+    SunsetModule,
+    BrowserModule,
+    SunriseModule,
     SnowflakeModule,
-    RainScatteredModule,
+    HttpClientModule,
     PartlyCloudyModule,
+    ThunderstormModule,
+    ReactiveFormsModule,
+    RainScatteredModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

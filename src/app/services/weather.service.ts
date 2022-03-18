@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from "rxjs";
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WeatherService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   rootURL = '/api';
 
-  getCityWeather(city:string):Observable<any> {
+  getCityWeather(city: string): Observable<any> {
     return this.http.get<any>(this.rootURL + `/weather/${city}`);
   }
-
 }

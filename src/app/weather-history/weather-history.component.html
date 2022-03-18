@@ -1,0 +1,14 @@
+<table ibmTable [sortable]="false" class="container">
+  <tbody ibmTableBody>
+    <tr class="row"
+          *ngFor="let row of model.data"
+          ibmTableRow
+          [row]="row">
+      <td
+              *ngFor="let item of row;"
+              ibmTableData
+              [item]="item">
+      </td>
+    </tr>
+  </tbody>
+</table>
