@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from '../services/weather.service';
-import { IWeather } from '../shared/weather.modal';
+import { WeatherService } from '../../services/weather.service';
+import { IWeather } from '../../shared/weather.modal';
 import { TableItem, TableModel } from 'carbon-components-angular';
 
 @Component({
@@ -26,7 +26,11 @@ export class WeatherHistoryComponent implements OnInit {
       .subscribe((weather) => {
         this.weather = weather.data.splice(6);
         this.model.data = [
-          [new TableItem({ data: weather.data[0].description}), new TableItem({ data: 'qwer' })],
+          [new TableItem({ data: weather.data[0].date}), new TableItem({ data: 'qwer' })],
+          [new TableItem({ data: 'asdf' }), new TableItem({ data: 'qwer' })],
+          [new TableItem({ data: 'asdf' }), new TableItem({ data: 'qwer' })],
+          [new TableItem({ data: 'asdf' }), new TableItem({ data: 'qwer' })],
+          [new TableItem({ data: 'asdf' }), new TableItem({ data: 'qwer' })],
           [new TableItem({ data: 'asdf' }), new TableItem({ data: 'qwer' })],
         ];
         console.log(this.weather);

@@ -8,4 +8,6 @@ export interface IWeather {
   temperature: number;
   temperature_feels_like: number;
   wind_speed: number;
+  sunrise: number;
+  sunset: number;
 }

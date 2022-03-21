@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IWeather } from '../shared/weather.modal';
-import { IconService } from '../services/icon.service';
-import { WeatherService } from '../services/weather.service';
+import { IWeather } from '../../shared/weather.modal';
+import { IconService } from '../../services/icon.service';
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'current-weather',
