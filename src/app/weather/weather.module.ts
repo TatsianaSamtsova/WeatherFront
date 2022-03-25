@@ -23,9 +23,11 @@ import {
   TilesModule,
 } from 'carbon-components-angular';
 import { WeatherComponent } from './weather.component';
-import { weatherRoutes } from "./weather.routes";
-import {RouterModule} from "@angular/router";
-import {WeatherInfoComponent} from "./weather-info/weather-info.component";
+import { weatherRoutes } from './weather.routes';
+import { RouterModule } from '@angular/router';
+import { WeatherInfoComponent } from './weather-info/weather-info.component';
+import { WeatherChartComponent } from './weather-chart/weather-chart.component';
+import {IconComponent} from "./icon.component";
 
 @NgModule({
   imports: [
@@ -49,10 +51,12 @@ import {WeatherInfoComponent} from "./weather-info/weather-info.component";
     RouterModule.forChild(weatherRoutes),
   ],
   declarations: [
+    IconComponent,
+    WeatherComponent,
     WeatherInfoComponent,
+    WeatherChartComponent,
     CurrentWeatherComponent,
     WeatherHistoryComponent,
-    WeatherComponent,
   ],
   providers: [],
 })

@@ -24,7 +24,6 @@ export class WeatherInfoComponent implements OnInit {
       .getCityWeather(this.currentCity)
       .subscribe((weather) => {
         this.weather = weather.data[0];
-        // console.log(weather);
       });
   }
 }

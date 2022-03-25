@@ -1,3 +1,10 @@
+<ng-template #iconTemplate let-data="data">
+  <div class="tableCell">
+    <p class="temperature">{{data.temperature}} °С</p>
+    <icon [description]="data.description" ></icon>
+  </div>
+</ng-template>
+
 <table ibmTable [sortable]="false" class="container">
   <tbody ibmTableBody>
     <tr class="row"

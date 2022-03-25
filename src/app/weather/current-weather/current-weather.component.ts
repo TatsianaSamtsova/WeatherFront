@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IWeather } from '../../shared/weather.modal';
-import { IconService } from '../../services/icon.service';
 import { WeatherService } from '../../services/weather.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { WeatherService } from '../../services/weather.service';
 export class CurrentWeatherComponent implements OnInit {
   constructor(
     private weatherService: WeatherService,
-    private iconService: IconService
   ) {}
 
   currentDateTime: Date | undefined;
@@ -22,7 +20,6 @@ export class CurrentWeatherComponent implements OnInit {
   ngOnInit() {
     this.currentDateTime = new Date();
     this.getCurrentWeather();
-    this.getIcon();
   }
 
   getCurrentWeather() {
@@ -31,12 +28,7 @@ export class CurrentWeatherComponent implements OnInit {
       .subscribe((weather) => {
         this.weather = weather.data[0];
         this.description = weather.data[0].description;
-        // console.log(weather);
       });
-  }
-
-  getIcon(){
-    return this.iconService.showIcon(this.description)
   }
 
 }

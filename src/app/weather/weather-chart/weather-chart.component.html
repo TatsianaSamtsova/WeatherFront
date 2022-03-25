@@ -1,0 +1,16 @@
+<ng-template #iconTemplate let-data="data">
+  <div class="tableCell">
+    <p class="time">{{data.time | date: "H:mm" }}</p>
+    <icon [description]="data.description" ></icon>
+  </div>
+</ng-template>
+
+<table ibmTable [sortable]="false" class="container">
+  <tbody ibmTableBody>
+    <tr class="row" *ngFor="let row of model.data" ibmTableRow [row]="row">
+      <td  class="cell" *ngFor="let item of row" ibmTableData [item]="item">
+      </td>
+    </tr>
+  </tbody>
+</table>
+

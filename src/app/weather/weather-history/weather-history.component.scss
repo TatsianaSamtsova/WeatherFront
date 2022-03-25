@@ -10,3 +10,18 @@
   border-bottom: 10px solid #e0e0e0;
   background: #f4f4f4;
 }
+
+.temperature{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+}
+
+.tableCell{
+  width: 104px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

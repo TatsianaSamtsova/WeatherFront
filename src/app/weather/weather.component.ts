@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
     <current-weather></current-weather>
     <weather-history></weather-history>
     <weather-info></weather-info>
+    <weather-chart></weather-chart>
   `,
 })
 export class WeatherComponent {}
