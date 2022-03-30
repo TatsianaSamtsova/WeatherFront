@@ -2,10 +2,17 @@ import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <current-weather></current-weather>
-    <weather-history></weather-history>
-    <weather-info></weather-info>
-    <weather-chart></weather-chart>
+    <div class="container">
+      <div class="wrapper">
+        <current-weather></current-weather>
+        <weather-history></weather-history>
+      </div>
+      <div class="wrapper">
+        <weather-chart></weather-chart>
+        <weather-info></weather-info>
+      </div>
+    </div>
   `,
+  styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent {}

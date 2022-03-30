@@ -1,7 +1,12 @@
 <ng-template #iconTemplate let-data="data">
   <div class="tableCell">
-    <p class="temperature">{{data.temperature}} °С</p>
+    {{data.temperature}} °С
     <icon [description]="data.description" ></icon>
+  </div>
+</ng-template>
+<ng-template #dateTemplate let-data="data">
+  <div class="date">
+    {{data | date: "EEEE"  }}
   </div>
 </ng-template>
 

@@ -1,46 +1,139 @@
 .container {
   position: relative;
-  width: 985px;
-  height: 578px;
-  left: 49px;
-  top: 105px;
+  width: 586px;
+  height: 290px;
   background: #ffffff;
 }
 .current-time {
   position: absolute;
-  left: 87px;
-  top: 450px;
+  left: 43px;
+  top: 210px;
   font-weight: 300;
-  font-size: 42px;
-  line-height: 50px;
+  font-size: 21px;
+  line-height: 64px;
 }
 .current-city {
   position: absolute;
-  left: 87px;
-  top: 59px;
+  left: 43px;
+  top: 25px;
   font-weight: 400;
-  font-size: 32px;
+  font-size: 16px;
   line-height: 40px;
 }
 .temperature {
   position: absolute;
-  right: 342px;
-  top: 59px;
+  right: 220px;
+  top: 25px;
   font-weight: 300;
-  font-size: 54px;
+  font-size: 27px;
   line-height: 64px;
 }
 .description {
   position: absolute;
-  right: 85px;
-  top: 436px;
+  right: 43px;
+  top: 210px;
   font-weight: 300;
-  font-size: 54px;
+  font-size: 27px;
   line-height: 64px;
 }
 
 .icon {
   position: absolute;
-  right: 64px;
-  top: 65px;
+  right: 65px;
+  top: 20px;
 }
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 670px;
+    height: 400px;
+  }
+  .current-time {
+    left: 50px;
+    top: 320px;
+    font-size: 30px;
+  }
+  .current-city {
+    left: 50px;
+    top: 45px;
+    font-size: 25px;
+  }
+  .temperature {
+    right: 260px;
+    top: 45px;
+    font-size: 40px;
+  }
+  .description {
+    right: 50px;
+    top: 320px;
+    font-size: 35px;
+  }
+
+  .icon {
+    right: 64px;
+    top: 35px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 926px;
+    height: 520px;
+  }
+  .current-time {
+    left: 75px;
+    top: 410px;
+    font-size: 36px;
+  }
+  .current-city {
+    left: 75px;
+    top: 52px;
+    font-size: 28px;
+  }
+  .temperature {
+    right: 320px;
+    top: 52px;
+    font-size: 47px;
+  }
+  .description {
+    right: 75px;
+    top: 410px;
+    font-size: 45px;
+  }
+
+  .icon {
+    right: 64px;
+    top: 35px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 985px;
+    height: 578px;
+  }
+  .current-time {
+    left: 87px;
+    top: 450px;
+    font-size: 42px;
+  }
+  .current-city {
+    left: 87px;
+    top: 59px;
+    font-size: 32px;
+  }
+  .temperature {
+    right: 342px;
+    top: 59px;
+    font-size: 54px;
+  }
+  .description {
+    right: 85px;
+    top: 436px;
+    font-size: 54px;
+  }
+
+  .icon {
+    right: 64px;
+    top: 65px;
+  }
+}
+

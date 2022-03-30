@@ -31,8 +31,15 @@ export class IconComponent {
   }
 
   iconSize(){
-    if(this.size === 'big')
-      return {height: '335px', width: '335px'}
-    return {height: '32px', width: '32px'}
+    switch (this.size) {
+      case '335':
+        return {height: '335px', width: '335px'}
+      case '240':
+        return {height: '240px', width: '240px'}
+      case '190':
+        return {height: '190px', width: '190px'}
+      default:
+        return {height: '32px', width: '32px'}
+    }
   }
 }

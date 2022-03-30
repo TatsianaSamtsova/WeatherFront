@@ -1,17 +1,11 @@
 .container {
-  position: absolute;
-  width: 985px;
-  height: 199px;
-  left: 49px;
-  top: 718px;
+  width: 586px;
+  height: 150px;
+  margin-top: 10px;
 }
 
-.tableCell{
+.tableCell {
   text-align: center;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0.16px;
 }
 
 .cell{
@@ -21,6 +15,33 @@
 
 .time{
   margin-bottom: 5px;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.16px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 670px;
+    height: 160px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 926px;
+    height: 180px;
+  }
+  .time {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 985px;
+    height: 199px;
+    margin-top: 35px;
+  }
 }
 
 

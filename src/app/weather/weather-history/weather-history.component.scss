@@ -1,27 +1,69 @@
 .container {
-  position: absolute;
   width: 586px;
-  left: 1077px;
-  top: 105px;
+  margin-top: 20px;
+}
+
+div {
+  font-weight: 400;
+  font-size: 15px;
 }
 
 .row {
-  height: 97px;
+  height: 65px;
   border-bottom: 10px solid #e0e0e0;
   background: #f4f4f4;
 }
 
-.temperature{
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0.16px;
-}
-
-.tableCell{
+.tableCell {
   width: 104px;
   height: 43px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.date {
+  margin-right: 160px;
+  margin-left: 34px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 670px;
+  }
+  .row {
+    height: 75px;
+  }
+  div {
+    font-size: 17px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 926px;
+  }
+  .row {
+    height: 85px;
+  }
+  div {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .date {
+    margin-left: 60px;
+    margin-right: 230px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 586px;
+    margin-top: 0;
+    margin-left: 43px;
+  }
+  .row {
+    height: 97px;
+  }
+  .date {
+    margin-right: 95px;
+  }
 }

@@ -1,78 +1,157 @@
 .container {
-  position: absolute;
   display: flex;
   flex-wrap: nowrap;
   width: 586px;
-  height: 199px;
-  left: 1077px;
-  top: 718px;
-  padding: 22px 36px;
+  height: 150px;
+  margin-top: 20px;
+  padding: 22px 30px;
 }
 
 .wrapper {
   text-align: center;
   width: 70px;
-  height: 137px;
-  margin: 14px 17px 0 40px;
+  height: 88px;
+  margin: 0 17px 0 40px;
 }
 
-.sunInfo{
-  padding-bottom: 24px;
+.sunInfo {
+  padding-bottom: 5px;
 }
 
-.sunText{
+.sunText {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
 }
 
-.sunTime{
+.sunTime {
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 26px;
 }
 
 .iconSunrise {
-  width: 70px;
-  height: 70px;
-  fill: #F1C21B;
+  width: 55px;
+  height: 55px;
+  fill: #f1c21b;
 }
 
 .iconSunset {
-  width: 70px;
-  height: 70px;
-  fill: #FA4D56;
+  width: 55px;
+  height: 55px;
+  fill: #fa4d56;
 }
 
-.line{
+.line {
   position: relative;
   left: 100px;
-  border-left: 1px solid #A8A8A8;
-  height: 155px;
+  border-left: 1px solid #a8a8a8;
+  height: 106px;
 }
 
-.infoBox{
+.infoBox {
   position: relative;
   left: 130px;
-  top: 35%;
+  top: 30%;
   width: 128px;
 }
 
-.infoItem{
+.infoItem {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   margin-bottom: 7px;
 }
 
-.infoText{
+.infoText {
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
 }
 
-.infoValue{
+.infoValue {
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 670px;
+  }
+  .line {
+    position: relative;
+    left: 150px;
+  }
+  .infoBox {
+    left: 170px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 926px;
+    height: 180px;
+  }
+  .wrapper {
+    margin-top: 10px;
+    margin-left: 70px;
+  }
+  .line {
+    left: 300px;
+    height: 136px;
+  }
+  .infoBox {
+    left: 350px;
+  }
+  .sunText {
+    font-size: 16px;
+  }
+  .sunTime {
+    font-size: 18px;
+  }
+  .iconSunrise {
+    width: 65px;
+    height: 65px;
+  }
+  .iconSunset {
+    width: 65px;
+    height: 65px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 586px;
+    height: 199px;
+    margin-top: 35px;
+    margin-left: 43px;
+    padding: 22px 36px;
+  }
+  .wrapper {
+    margin-top: 14px;
+    margin-left: 40px;
+  }
+  .sunInfo {
+    padding-bottom: 24px;
+  }
+  .sunText {
+    font-size: 16px;
+  }
+  .sunTime {
+    font-size: 20px;
+  }
+  .iconSunrise {
+    width: 70px;
+    height: 70px;
+  }
+  .iconSunset {
+    width: 70px;
+    height: 70px;
+  }
+  .line {
+    left: 100px;
+    height: 155px;
+  }
+  .infoBox {
+    left: 130px;
+  }
 }
