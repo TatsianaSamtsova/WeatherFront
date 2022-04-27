@@ -1,6 +1,10 @@
 <div class="container">
-  <form>
-    <label>City: </label>
-    <input type="text" [formControl]="city" />
+  <form [formGroup]="cityForm" autocomplete="off" novalidate (ngSubmit)="updateCity(cityForm.value)">
+    <label for="city">City: </label>
+    <em *ngIf="_city.invalid && (_city.touched || _city.dirty) && _city.errors?.required">Required</em>
+    <em *ngIf=" _city.errors?.pattern">Must include only latin alphabets</em>
+    <input type="text" formControlName="city" id="city"/>
+    <p>{{currentCity}}</p>
+    <button type="submit" [disabled]="cityForm.invalid">Save</button>
   </form>
 </div>

@@ -17,6 +17,4 @@ export class WeatherService {
   getHistoryWeather(city: string): Observable<any> {
     return this.http.get<any>(this.rootURL + `/weather/history/${city}`);
   }
-
-
 }

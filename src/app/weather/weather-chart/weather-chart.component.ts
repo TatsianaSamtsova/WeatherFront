@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IWeather } from '../../shared/weather.modal';
 import { WeatherService } from '../../services/weather.service';
 import { TableItem, TableModel } from 'carbon-components-angular';
+import {CityService} from "../../services/city.service";
 
 @Component({
   selector: 'weather-chart',
@@ -12,9 +13,9 @@ export class WeatherChartComponent implements OnInit {
   @ViewChild('iconTemplate', { static: false })
   protected iconTemplate: TemplateRef<any> | undefined;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService, public cityService: CityService) {}
 
-  currentCity: string = 'Minsk';
+  currentCity = this.cityService.currentCity
   model = new TableModel();
   weather: IWeather[] | undefined;
   description: string = '';

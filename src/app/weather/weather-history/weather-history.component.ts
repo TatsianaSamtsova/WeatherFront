@@ -2,6 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { IWeather } from '../../shared/weather.modal';
 import { TableItem, TableModel } from 'carbon-components-angular';
+import {CityService} from "../../services/city.service";
 
 @Component({
   selector: 'weather-history',
@@ -14,9 +15,9 @@ export class WeatherHistoryComponent implements OnInit {
   @ViewChild('dateTemplate', { static: false })
   protected dateTemplate: TemplateRef<any> | undefined;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService, public cityService: CityService) {}
 
-  currentCity: string = 'Minsk';
+  currentCity = this.cityService.currentCity;
   model = new TableModel();
   weather: IWeather[] | undefined;
   description: string = '';

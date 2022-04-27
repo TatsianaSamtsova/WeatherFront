@@ -1,26 +1,37 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { FormControl } from '@angular/forms';
+import {Component, OnInit} from "@angular/core";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CityService} from "../services/city.service";
 
 @Component({
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.scss'],
 })
 
-export class CityComponent {
+export class CityComponent implements OnInit{
+  cityForm: any
+  private city: any
 
-  constructor (private router: Router){
 
+  constructor (public cityService: CityService){
+  }
+  currentCity= this.cityService.currentCity
+
+  ngOnInit(): void {
+    this.city = new FormControl('',[Validators.required, Validators.pattern('[A-Za-z]+')])
+    this.cityForm = new FormGroup({
+      city: this.city,
+    })
   }
 
-  city = new FormControl('');
+  get _city() {
+    return this.cityForm.get('city')
+  }
 
-  // login(formValues){
-  //   this.authService.loginUser(formValues.userName, formValues.password)
-  //   this.router.navigate(['events'])
-  // }
-  //
-  // cancel(){
-  //   this.router.navigate(['events'])
-  // }
+
+  updateCity(formValues: any){
+    this.cityService.updateCurrentCity(formValues.city)
+    this.currentCity=formValues.city
+    this.cityForm.reset()
+  }
+
 }

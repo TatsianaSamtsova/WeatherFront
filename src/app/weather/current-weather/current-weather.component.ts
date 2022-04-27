@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import { IWeather } from '../../shared/weather.modal';
 import { WeatherService } from '../../services/weather.service';
+import {CityService} from "../../services/city.service";
 
 @Component({
   selector: 'current-weather',
@@ -10,10 +11,11 @@ import { WeatherService } from '../../services/weather.service';
 export class CurrentWeatherComponent implements OnInit {
   constructor(
     private weatherService: WeatherService,
+    public cityService: CityService
   ) {}
 
   currentDateTime: Date | undefined;
-  currentCity: string = 'Minsk';
+  currentCity = this.cityService.currentCity
   weather: IWeather | undefined;
   description: string = '';
   width: any
