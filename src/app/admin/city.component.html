@@ -1,10 +1,55 @@
-<div class="container">
-  <form [formGroup]="cityForm" autocomplete="off" novalidate (ngSubmit)="updateCity(cityForm.value)">
-    <label for="city">City: </label>
-    <em *ngIf="_city.invalid && (_city.touched || _city.dirty) && _city.errors?.required">Required</em>
-    <em *ngIf=" _city.errors?.pattern">Must include only latin alphabets</em>
-    <input type="text" formControlName="city" id="city"/>
-    <p>{{currentCity}}</p>
-    <button type="submit" [disabled]="cityForm.invalid">Save</button>
-  </form>
+<div ibmGrid>
+  <div ibmRow class="container">
+    <form  [formGroup]="cityForm" autocomplete="off" novalidate (ngSubmit)="onSubmit(cityForm.value)">
+      <div >
+        <div class="dropdown-wrapper">
+          <ibm-dropdown
+            label="Choose city"
+            placeholder="Select a city"
+            (selected)="selected($event)"
+            formControlName="dropdown">
+            <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+          </ibm-dropdown>
+
+        </div>
+        <div>
+          <ibm-label
+          [invalid]="isInvalid()"
+          invalidText="City's name is incorrect. Must include only latin alphabets">
+            Add a new city
+            <input
+            ibmText
+            formControlName="city"
+            placeholder="Please enter a new city">
+        </ibm-label>
+        </div>
+        <button
+          class="form-button"
+          ibmButton
+          type="submit"
+          [disabled]="cityForm.invalid">
+          Add
+        </button>
+      </div>
+      <div class="bx--form-item">
+      </div>
+    </form>
+  </div>
 </div>
+<ibm-loading
+  *ngIf="isLoading"
+  [isActive]="isLoading"
+  size="normal"
+  [overlay]="overlay">
+</ibm-loading>
+
+<!--<div class="container">-->
+<!--  <form [formGroup]="cityForm" autocomplete="off" novalidate (ngSubmit)="updateCity(cityForm.value)">-->
+<!--    <label for="city">City: </label>-->
+<!--    <em *ngIf="_city.invalid && (_city.touched || _city.dirty) && _city.errors?.required">Required</em>-->
+<!--    <em *ngIf=" _city.errors?.pattern">Must include only latin alphabets</em>-->
+<!--    <input type="text" formControlName="city" id="city"/>-->
+<!--    <p>{{currentCity}}</p>-->
+<!--    <button type="submit" [disabled]="cityForm.invalid">Save</button>-->
+<!--  </form>-->
+<!--</div>-->
