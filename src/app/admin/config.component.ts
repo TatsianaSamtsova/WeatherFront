@@ -1,79 +1,53 @@
-// import { Component, Input } from "@angular/core";
-// import { Router } from "@angular/router";
-//
-// import {TableModel, TableRowSize} from "carbon-components-angular";
-//
-// @Component({
-//   selector: "app-no-data-table",
-//   templateUrl: './config.component.html'
-// })
-//
-// export class ConfigComponent {
-//   @Input() model: TableModel = new TableModel();
-//   @Input() size: TableRowSize = "md";
-//
-//   constructor (private router: Router){
-//
-//   }
-//
-//   login(formValues){
-//     this.authService.loginUser(formValues.userName, formValues.password)
-//     this.router.navigate(['events'])
-//   }
-//
-//   cancel(){
-//     this.router.navigate(['events'])
-//   }
-//
-// }
-
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {
   TableModel,
   TableHeaderItem,
-  TableItem
-} from "carbon-components-angular";
+  TableItem,
+} from 'carbon-components-angular';
+import { CityService } from '../services/city.service';
 
-  @Component({
-    selector: "app-no-data-table",
-    templateUrl: './config.component.html'
-  })
-
+@Component({
+  selector: 'app-no-data-table',
+  templateUrl: './config.component.html',
+  styleUrls: ['./config.component.scss'],
+})
 export class ConfigComponent implements OnInit {
-  name = "Angular";
+  @ViewChild('optionTemplate', { static: false })
+  protected optionTemplate: TemplateRef<any> | undefined;
+  name = 'Angular';
+  configs: any;
   tableModel = new TableModel();
 
-  constructor() {}
+  constructor(public cityService: CityService) {}
   ngOnInit() {
     this.tableModel.header = [
-      new TableHeaderItem({ data: "Description"}),
-      new TableHeaderItem({ data: "Temperature"}),
-      new TableHeaderItem({ data: "Feels like"}),
-      new TableHeaderItem({ data: "Wind speed"}),
-      new TableHeaderItem({ data: "Pressure"}),
-      new TableHeaderItem({ data: "Humidity"}),
+      new TableHeaderItem({ data: 'Options' }),
+      new TableHeaderItem({ data: 'City' }),
+      new TableHeaderItem({ data: 'Units' }),
+      new TableHeaderItem({ data: 'Interval' }),
     ];
 
-    this.tableModel.data = [
-      [ new TableItem({ data: "Name 1" }),
-        new TableItem({ data: "AAA" }),
-        new TableItem({ data: "AAA" }),
-        new TableItem({ data: "AAA" }),
-        new TableItem({ data: "AAA" }),
-        new TableItem({ data: "AAA" }),
-      ],
-
-      [ new TableItem({ data: "Name 1" }),
-        new TableItem({ data: "AAA" }),
-        new TableItem({ data: "AAA" }),
-        new TableItem({ data: "AAA" }),
-        new TableItem({ data: "AAA" }),
-        new TableItem({ data: "AAA" })
-    ]
-    ]
-
+    this.configs = this.cityService.getCities().subscribe((data) => {
+      data.data.reduce((acc: any, el: any, index: any) => {
+        acc.push([
+          new TableItem({
+            data: [el.config_id, index],
+            template: this.optionTemplate,
+          }),
+          new TableItem({ data: el.city_name }),
+          new TableItem({ data: el.units }),
+          new TableItem({ data: el.interval }),
+        ]);
+        this.tableModel.data = acc;
+        return acc;
+      }, []);
+    });
   }
 
+  deleteCity(data: any) {
+    console.log(data);
+    this.cityService.deleteCity(data[0]).subscribe(() => {
+      this.tableModel.deleteRow(data[1]);
+    });
+  }
 }
-
-

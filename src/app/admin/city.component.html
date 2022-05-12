@@ -1,38 +1,44 @@
 <div ibmGrid>
   <div ibmRow class="container">
-    <form  [formGroup]="cityForm" autocomplete="off" novalidate (ngSubmit)="onSubmit(cityForm.value)">
-      <div >
-        <div class="dropdown-wrapper">
+    <form
+      [formGroup]="cityForm"
+      autocomplete="off"
+      novalidate
+      (ngSubmit)="onSubmit(cityForm.value)"
+    >
+      <div>
+        <div >
           <ibm-dropdown
             label="Choose city"
             placeholder="Select a city"
             (selected)="selected($event)"
-            formControlName="dropdown">
+          >
             <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
           </ibm-dropdown>
-
         </div>
         <div>
           <ibm-label
-          [invalid]="isInvalid()"
-          invalidText="City's name is incorrect. Must include only latin alphabets">
+            [invalid]="isInvalid()"
+            invalidText="City's name is incorrect. Must include only latin alphabets"
+          >
             Add a new city
             <input
-            ibmText
-            formControlName="city"
-            placeholder="Please enter a new city">
-        </ibm-label>
+              ibmText
+              formControlName="city"
+              placeholder="Please enter a new city"
+            />
+          </ibm-label>
         </div>
         <button
           class="form-button"
           ibmButton
           type="submit"
-          [disabled]="cityForm.invalid">
+          [disabled]="cityForm.invalid"
+        >
           Add
         </button>
       </div>
-      <div class="bx--form-item">
-      </div>
+      <div class="bx--form-item"></div>
     </form>
   </div>
 </div>
@@ -40,7 +46,8 @@
   *ngIf="isLoading"
   [isActive]="isLoading"
   size="normal"
-  [overlay]="overlay">
+  [overlay]="overlay"
+>
 </ibm-loading>
 
 <!--<div class="container">-->

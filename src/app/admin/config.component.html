@@ -1,4 +1,14 @@
-<div>
+<ng-template #optionTemplate let-data="data">
+  <ibm-overflow-menu class="options" placement="bottom" >
+    <ibm-overflow-menu-option>Edit</ibm-overflow-menu-option>
+    <ibm-overflow-menu-option
+      type="danger"
+      (click)="deleteCity(data)"
+      >Delete</ibm-overflow-menu-option
+    >
+  </ibm-overflow-menu>
+</ng-template>
+<div class="container">
   <ibm-table
     [model]="tableModel"
     [size]="'md'"
@@ -6,7 +16,6 @@
     [striped]="false"
     [skeleton]="false"
     [isDataGrid]="false"
-    >
-
+  >
   </ibm-table>
 </div>
