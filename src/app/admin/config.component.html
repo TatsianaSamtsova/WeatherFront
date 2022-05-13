@@ -1,12 +1,26 @@
 <ng-template #optionTemplate let-data="data">
-  <ibm-overflow-menu class="options" placement="bottom" >
+  <ibm-overflow-menu class="options" placement="bottom">
     <ibm-overflow-menu-option>Edit</ibm-overflow-menu-option>
-    <ibm-overflow-menu-option
-      type="danger"
-      (click)="deleteCity(data)"
-      >Delete</ibm-overflow-menu-option
-    >
+    <ibm-overflow-menu-option type="danger" (click)="openModal(data)"
+      ><p #trigger>Delete</p>
+    </ibm-overflow-menu-option>
   </ibm-overflow-menu>
+  <ibm-modal [open]="open" [trigger]="trigger">
+    <ibm-modal-header [showCloseButton]="false">
+      <p class="label">Delete the city</p>
+    </ibm-modal-header>
+    <div class="content">
+      <p>
+        Are you sure you want to remove {{ deleteData[2] }} from the configs?
+      </p>
+    </div>
+    <ibm-modal-footer>
+      <ng-container>
+        <button ibmButton="primary" (click)="closeModal()">Cancel</button>
+        <button ibmButton="primary" (click)="deleteCity()">Okay</button>
+      </ng-container>
+    </ibm-modal-footer>
+  </ibm-modal>
 </ng-template>
 <div class="container">
   <ibm-table

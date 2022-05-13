@@ -17,6 +17,8 @@ export class ConfigComponent implements OnInit {
   name = 'Angular';
   configs: any;
   tableModel = new TableModel();
+  open: boolean = false;
+  deleteData: any = [];
 
   constructor(public cityService: CityService) {}
   ngOnInit() {
@@ -31,7 +33,7 @@ export class ConfigComponent implements OnInit {
       data.data.reduce((acc: any, el: any, index: any) => {
         acc.push([
           new TableItem({
-            data: [el.config_id, index],
+            data: [el.config_id, index, el.city_name],
             template: this.optionTemplate,
           }),
           new TableItem({ data: el.city_name }),
@@ -44,10 +46,19 @@ export class ConfigComponent implements OnInit {
     });
   }
 
-  deleteCity(data: any) {
-    console.log(data);
-    this.cityService.deleteCity(data[0]).subscribe(() => {
-      this.tableModel.deleteRow(data[1]);
+  openModal(data: any) {
+    this.open = true;
+    this.deleteData = data;
+  }
+
+  closeModal() {
+    this.open = false;
+  }
+
+  deleteCity() {
+    this.open = false;
+    this.cityService.deleteCity(this.deleteData[0]).subscribe(() => {
+      this.tableModel.deleteRow(this.deleteData[1]);
     });
   }
 }
