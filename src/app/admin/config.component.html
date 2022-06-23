@@ -1,28 +1,122 @@
-<ng-template #optionTemplate let-data="data">
+<ng-template
+  #optionTemplate
+  let-data="data"
+  xmlns="http://www.w3.org/1999/html"
+>
   <ibm-overflow-menu class="options" placement="bottom">
-    <ibm-overflow-menu-option>Edit</ibm-overflow-menu-option>
-    <ibm-overflow-menu-option type="danger" (click)="openModal(data)"
+    <ibm-overflow-menu-option (click)="openConfigModal('edit', data)"
+      ><p #trigger>Edit</p>
+    </ibm-overflow-menu-option>
+    <ibm-overflow-menu-option type="danger" (click)="openDeleteModal(data)"
       ><p #trigger>Delete</p>
     </ibm-overflow-menu-option>
   </ibm-overflow-menu>
-  <ibm-modal [open]="open" [trigger]="trigger">
+  <ibm-modal [open]="deleteModal" [trigger]="trigger">
     <ibm-modal-header [showCloseButton]="false">
-      <p class="label">Delete the city</p>
+      <h1 >Delete the city</h1>
     </ibm-modal-header>
     <div class="content">
-      <p>
+      <p >
         Are you sure you want to remove {{ deleteData[2] }} from the configs?
       </p>
     </div>
     <ibm-modal-footer>
       <ng-container>
-        <button ibmButton="primary" (click)="closeModal()">Cancel</button>
-        <button ibmButton="primary" (click)="deleteCity()">Okay</button>
+        <button
+          ibmButton="secondary"
+          [size]="'field'"
+          (click)="closeDeleteModal()"
+        >
+          Cancel
+        </button>
+        <button ibmButton="primary" [size]="'field'" (click)="deleteCity()">
+          Okay
+        </button>
       </ng-container>
     </ibm-modal-footer>
   </ibm-modal>
+  <ibm-modal [open]="open" [trigger]="trigger">
+    <form
+      [formGroup]="cityForm"
+      autocomplete="off"
+      novalidate
+      (ngSubmit)="onSubmit(cityForm.value)"
+    >
+      <ibm-modal-header [showCloseButton]="false">
+        <h1 class="label">{{ modalLabel }}</h1>
+      </ibm-modal-header>
+      <div>
+        <p class="configContent">{{ modalText }}</p>
+        <div>
+          <ibm-label
+            [invalid]="isInvalid('city')"
+            invalidText="City's name is incorrect. Must include only latin alphabets"
+          >
+            <input
+              ibmText
+              formControlName="city"
+              [placeholder]="cityPlaceholder"
+            />
+          </ibm-label>
+          <input
+            ibmText
+            formControlName="units"
+            [placeholder]="unitsPlaceholder"
+            list="units"
+          />
+          <datalist id="units">
+            <option>standard</option>
+            <option>metric</option>
+            <option>imperial</option>
+          </datalist>
+          <ibm-label
+            [invalid]="isInvalid('interval')"
+            invalidText="Interval is incorrect. Must include only integer"
+          >
+            <input
+              ibmText
+              formControlName="interval"
+              [placeholder]="intervalPlaceholder"
+            />
+          </ibm-label>
+        </div>
+      </div>
+      <ibm-modal-footer>
+        <ng-container>
+          <button
+            ibmButton="secondary"
+            [size]="'field'"
+            type="reset"
+            (click)="closeConfigModal()"
+          >
+            Cancel
+          </button>
+          <button
+            ibmButton="primary"
+            [size]="'field'"
+            type="submit"
+            [disabled]="cityForm.invalid"
+          >
+            Okay
+          </button>
+        </ng-container>
+      </ibm-modal-footer>
+    </form>
+  </ibm-modal>
 </ng-template>
 <div class="container">
+  <ibm-table-toolbar>
+    <ibm-table-toolbar-content>
+      <button
+        ibmButton="primary"
+        [size]="'sm'"
+        (click)="openConfigModal('add')"
+      >
+        Add City
+      </button>
+    </ibm-table-toolbar-content>
+  </ibm-table-toolbar>
+
   <ibm-table
     [model]="tableModel"
     [size]="'md'"

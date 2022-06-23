@@ -11,3 +11,10 @@ export interface IWeather {
   sunrise: number;
   sunset: number;
 }
+
+export  interface IWeatherHistory {
+  day_temperature: number;
+  night_temperature: number;
+  date: Date;
+  description: string
+}

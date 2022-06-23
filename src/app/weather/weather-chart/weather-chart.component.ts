@@ -1,8 +1,19 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { IWeather } from '../../shared/weather.modal';
 import { WeatherService } from '../../services/weather.service';
 import { TableItem, TableModel } from 'carbon-components-angular';
-import {CityService} from "../../services/city.service";
+import { ConfigService } from '../../services/config.service';
+import {Observable} from "rxjs";
+import * as weather from "../../store/weather-store/weather.selectors";
+import { Store} from "@ngrx/store";
+import {getWeatherAction, getWeatherHistoryAction} from "../../store/weather-store/weather.actions";
+import * as admin from "../../store/admin-store/admin.selectors";
 
 @Component({
   selector: 'weather-chart',
@@ -13,69 +24,78 @@ export class WeatherChartComponent implements OnInit {
   @ViewChild('iconTemplate', { static: false })
   protected iconTemplate: TemplateRef<any> | undefined;
 
-  constructor(private weatherService: WeatherService, public cityService: CityService) {}
+  constructor(
+    private readonly store$: Store,
+    public configService: ConfigService
+  ) {}
 
-  currentCity = this.cityService.currentCity
   model = new TableModel();
-  weather: IWeather[] | undefined;
-  description: string = '';
+  currentCity$: Observable<string> = this.store$.select(admin.getCurrentCity);
+  weather$: Observable<any> = this.store$.select(weather.getWeather);
 
   ngOnInit() {
     this.getCurrentWeather();
   }
 
+  getCity(): any {
+    let city: any;
+    this.currentCity$.pipe().subscribe(data => city = data);
+    return city;
+  }
+
   getCurrentWeather() {
-    this.weatherService
-      .getCityWeather(this.currentCity)
-      .subscribe((weather) => {
-        this.weather = weather.data;
+    // this.configService.sbj.subscribe((city) => {
+      // this.store$.dispatch(changeCityAction({ city }));
+      this.store$.dispatch(getWeatherAction({ city: this.getCity() }));
+      this.weather$.subscribe((weather) => {
         this.model.data = [
           [
             new TableItem({
               data: {
-                time: weather.data[5].date,
-                description: weather.data[5].description,
+                time: weather[5].date,
+                description: weather[5].description,
               },
               template: this.iconTemplate,
             }),
             new TableItem({
               data: {
-                time: weather.data[4].date,
-                description: weather.data[4].description,
+                time: weather[4].date,
+                description: weather[4].description,
               },
               template: this.iconTemplate,
             }),
             new TableItem({
               data: {
-                time: weather.data[3].date,
-                description: weather.data[3].description,
+                time: weather[3].date,
+                description: weather[3].description,
               },
               template: this.iconTemplate,
             }),
             new TableItem({
               data: {
-                time: weather.data[2].date,
-                description: weather.data[2].description,
+                time: weather[2].date,
+                description: weather[2].description,
               },
               template: this.iconTemplate,
             }),
             new TableItem({
               data: {
-                time: weather.data[1].date,
-                description: weather.data[1].description,
+                time: weather[1].date,
+                description:weather[1].description,
               },
               template: this.iconTemplate,
             }),
             new TableItem({
               data: {
-                time: weather.data[0].date,
-                description: weather.data[0].description,
+                time: weather[0].date,
+                description: weather[0].description,
               },
               template: this.iconTemplate,
             }),
           ],
         ];
-      });
+      })
+    // })
   }
 
 }

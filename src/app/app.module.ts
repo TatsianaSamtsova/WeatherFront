@@ -4,11 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { HeaderModule } from 'carbon-components-angular';
+import {DropdownModule, HeaderModule, ModalModule} from 'carbon-components-angular';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { appRoutes } from './routes';
+import {WeatherService} from "./services/weather.service";
+import {ConfigService} from "./services/config.service";
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import {WeatherStoreModule} from "./store/weather-store/weather-store.module";
+import {AdminStoreModule} from "./store/admin-store/admin-store.module";
+import { EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './entity-metadata';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -17,9 +27,17 @@ import { appRoutes } from './routes';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ModalModule,
+    DropdownModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([]),
+    WeatherStoreModule,
+    AdminStoreModule,
+    EntityDataModule.forRoot(entityConfig)
   ],
-  providers: [],
+  providers: [WeatherService, ConfigService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

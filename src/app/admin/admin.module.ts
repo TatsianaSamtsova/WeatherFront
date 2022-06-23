@@ -1,7 +1,7 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
-import { ReactiveFormsModule } from "@angular/forms";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {
   ModalModule,
@@ -10,13 +10,11 @@ import {
   InputModule,
   LoadingModule,
   PlaceholderModule,
-  TableModule
-} from "carbon-components-angular";
+  TableModule, IconModule, ButtonModule,
+} from 'carbon-components-angular';
 
-import { adminRoutes } from "./admin.routes";
-import { CityComponent } from "./city.component"
-import { ConfigComponent } from "./config.component"
-
+import { adminRoutes } from './admin.routes';
+import { ConfigComponent } from './config.component';
 
 @NgModule({
   imports: [
@@ -30,17 +28,10 @@ import { ConfigComponent } from "./config.component"
     LoadingModule,
     DialogModule,
     PlaceholderModule,
-
+    IconModule,
+    ButtonModule,
   ],
-  declarations: [
-    CityComponent,
-    ConfigComponent
-  ],
-  providers: [
-
-  ]
+  declarations: [ConfigComponent],
+  providers: [],
 })
-
-export class AdminModule {
-
-}
+export class AdminModule {}

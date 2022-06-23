@@ -27,7 +27,7 @@ import { weatherRoutes } from './weather.routes';
 import { RouterModule } from '@angular/router';
 import { WeatherInfoComponent } from './weather-info/weather-info.component';
 import { WeatherChartComponent } from './weather-chart/weather-chart.component';
-import {IconComponent} from "./icon.component";
+import { IconComponent } from './icon.component';
 
 @NgModule({
   imports: [

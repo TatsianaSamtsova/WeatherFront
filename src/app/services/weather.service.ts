@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {IWeather} from "../shared/weather.modal";
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class WeatherService {
   constructor(private http: HttpClient) {}
 
-  rootURL = '/api';
+  rootURL = '/api/weather/';
 
-  getCityWeather(city: string): Observable<any> {
-    return this.http.get<any>(this.rootURL + `/weather/${city}`);
+  getCityWeather(city: any): Observable<any> {
+    return this.http.get<any>(this.rootURL + city);
   }
 
   getHistoryWeather(city: string): Observable<any> {
-    return this.http.get<any>(this.rootURL + `/weather/history/${city}`);
+    return this.http.get<any>(this.rootURL + 'history/' + city);
   }
 }

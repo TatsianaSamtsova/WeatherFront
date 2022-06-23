@@ -1,9 +1,24 @@
+<ibm-modal [open]="open">
+  <ibm-modal-header [showCloseButton]="true" (closeSelect)="closeModal()">
+    <h1 class="label">Change the city</h1>
+  </ibm-modal-header>
+  <section ibmModalContent class="bx--modal-content">
+    <p class="text">In order to change the current location, select the desired city from the drop-down list</p>
+    <ibm-dropdown
+      [appendInline]="true"
+      placeholder="Select a city"
+      (selected)="selected($event)"
+    >
+      <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+    </ibm-dropdown>
+  </section>
+</ibm-modal>
 <ibm-header brand="Project" name="[Weather]" [route]="['']">
   <ibm-header-navigation class="header">
     <div class="header-nav">
       <ibm-header-item [route]="['config']"> Manage data </ibm-header-item>
-      <ibm-header-item [route]="['city']">
-        Current location: {{city}}, &nbsp;<u>change location</u>
+      <ibm-header-item (click)="open = true">
+        Current location: {{ city$ | async }}, &nbsp;<u>change location</u>
       </ibm-header-item>
     </div>
   </ibm-header-navigation>

@@ -7,3 +7,8 @@
 body {
   background-color: #e0e0e0;
 }
+
+.bx--list-box__menu {
+  max-height: 95px !important;
+  overflow-y: scroll !important;
+}

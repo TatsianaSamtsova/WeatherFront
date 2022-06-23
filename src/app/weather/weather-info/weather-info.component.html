@@ -1,31 +1,31 @@
-<ibm-tile class="container">
+<ibm-tile class="container" *ngFor="let weather of weather$ | async ">
   <div class="wrapper">
     <div class="sunInfo">
       <p class="sunText">Sunrise</p>
-      <p class="sunTime">{{weather?.sunrise | date: "H:mm" }}</p>
+      <p class="sunTime">{{ weather?.sunrise | date: "H:mm" }}</p>
     </div>
     <svg class="iconSunrise" ibmIconSunrise size="32"></svg>
   </div>
-  <div  class="wrapper">
+  <div class="wrapper">
     <div class="sunInfo">
       <p class="sunText">Sunset</p>
-      <p class="sunTime">{{weather?.sunset | date: "H:mm" }}</p>
+      <p class="sunTime">{{ weather?.sunset | date: "H:mm" }}</p>
     </div>
     <svg class="iconSunset" ibmIconSunset size="32"></svg>
   </div>
   <div class="line"></div>
   <div class="infoBox">
-<!--    <div class="infoItem">-->
-<!--      <p class="infoText">UV index</p>-->
-<!--      <p class="infoValue"> ??? </p>-->
-<!--    </div>-->
+    <!--    <div class="infoItem">-->
+    <!--      <p class="infoText">UV index</p>-->
+    <!--      <p class="infoValue"> ??? </p>-->
+    <!--    </div>-->
     <div class="infoItem">
       <p class="infoText">Wind</p>
-      <p class="infoValue">{{weather?.wind_speed}} km/h</p>
+      <p class="infoValue">{{ weather?.wind_speed }} km/h</p>
     </div>
     <div class="infoItem">
       <p class="infoText">Humidity</p>
-      <p class="infoValue">{{weather?.humidity}}%</p>
+      <p class="infoValue">{{ weather?.humidity }}%</p>
     </div>
   </div>
 </ibm-tile>

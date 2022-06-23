@@ -1,13 +1,17 @@
-<ibm-tile class="container">
-  <div class="current-time">
-    {{ weather?.date | date: "E, H:mm" }}
+<ibm-tile class="container" *ngFor="let weather of weather$ | async ">
+  <div class="current-time" >
+    {{ currentDateTime$ | async | date: "E, H:mm" }}
   </div>
   <div class="current-city">
-    {{ currentCity }}
+    {{ currentCity$ | async }}
   </div>
-  <div class="temperature">{{ weather?.temperature }} °С</div>
+  <div class="temperature" >{{ weather?.temperature }} °С</div>
   <div class="description">
     {{ weather?.description | titlecase }}
   </div>
-  <icon class="icon" description="{{weather?.description}}" size='{{size()}}'></icon>
+  <icon
+    class="icon"
+    description="{{weather?.description}}"
+    size="{{ size() }}"
+  ></icon>
 </ibm-tile>

@@ -1,8 +1,18 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import { WeatherService } from '../../services/weather.service';
-import { IWeather } from '../../shared/weather.modal';
+import {
+  Component,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { TableItem, TableModel } from 'carbon-components-angular';
-import {CityService} from "../../services/city.service";
+import { ConfigService } from '../../services/config.service';
+import { Observable } from 'rxjs';
+import * as weather from '../../store/weather-store/weather.selectors';
+import { Store} from '@ngrx/store';
+import {
+  getWeatherHistoryAction,
+} from '../../store/weather-store/weather.actions';
+import * as admin from "../../store/admin-store/admin.selectors";
 
 @Component({
   selector: 'weather-history',
@@ -15,127 +25,153 @@ export class WeatherHistoryComponent implements OnInit {
   @ViewChild('dateTemplate', { static: false })
   protected dateTemplate: TemplateRef<any> | undefined;
 
-  constructor(private weatherService: WeatherService, public cityService: CityService) {}
+  constructor(
+    private readonly store$: Store,
+    public configService: ConfigService
+  ) {}
 
-  currentCity = this.cityService.currentCity;
   model = new TableModel();
-  weather: IWeather[] | undefined;
-  description: string = '';
+  currentCity$: Observable<string> = this.store$.select(admin.getCurrentCity);
+  weatherHistory$: Observable<any> = this.store$.select(weather.getWeatherHistory);
 
   ngOnInit() {
     this.getWeatherHistory();
   }
 
+  getCity(): any {
+    let city: any;
+    this.currentCity$.pipe().subscribe(data => city = data);
+    return city;
+  }
+
   getWeatherHistory() {
-    this.weatherService
-      .getHistoryWeather(this.currentCity)
-      .subscribe((weather) => {
-        this.weather = weather.data;
+    // this.configService.sbj.subscribe((city) => {
+      // this.store$.dispatch(changeCityAction({ city }));
+      this.store$.dispatch(getWeatherHistoryAction({ city:  this.getCity()}));
+      this.weatherHistory$.subscribe((weather) => {
         this.model.data = [
           [
-            new TableItem({ data: weather.data[0].date, template: this.dateTemplate }),
+            new TableItem({
+              data: weather[0].date,
+              template: this.dateTemplate,
+            }),
             new TableItem({
               data: {
-                temperature: weather.data[0].day_temperature,
-                description: weather.data[0].description,
+                temperature: weather[0].day_temperature,
+                description: weather[0].description,
               },
               template: this.iconTemplate,
             }),
             new TableItem({
               data: {
-                temperature: weather.data[0].night_temperature,
-                description: weather.data[0].description,
-              },
-              template: this.iconTemplate,
-            }),
-          ],
-          [
-            new TableItem({ data: weather.data[1].date, template: this.dateTemplate }),
-            new TableItem({
-              data: {
-                temperature: weather.data[1].day_temperature,
-                description: weather.data[1].description,
-              },
-              template: this.iconTemplate,
-            }),
-            new TableItem({
-              data: {
-                temperature: weather.data[1].night_temperature,
-                description: weather.data[1].description,
+                temperature: weather[0].night_temperature,
+                description: weather[0].description,
               },
               template: this.iconTemplate,
             }),
           ],
           [
-            new TableItem({ data: weather.data[2].date, template: this.dateTemplate }),
+            new TableItem({
+              data: weather[1].date,
+              template: this.dateTemplate,
+            }),
             new TableItem({
               data: {
-                temperature: weather.data[2].day_temperature,
-                description: weather.data[2].description,
+                temperature: weather[1].day_temperature,
+                description: weather[1].description,
               },
               template: this.iconTemplate,
             }),
             new TableItem({
               data: {
-                temperature: weather.data[2].night_temperature,
-                description: weather.data[2].description,
-              },
-              template: this.iconTemplate,
-            }),
-          ],
-          [
-            new TableItem({ data: weather.data[3].date, template: this.dateTemplate }),
-            new TableItem({
-              data: {
-                temperature: weather.data[3].day_temperature,
-                description: weather.data[3].description,
-              },
-              template: this.iconTemplate,
-            }),
-            new TableItem({
-              data: {
-                temperature: weather.data[3].night_temperature,
-                description: weather.data[3].description,
+                temperature: weather[1].night_temperature,
+                description: weather[1].description,
               },
               template: this.iconTemplate,
             }),
           ],
           [
-            new TableItem({ data: weather.data[4].date, template: this.dateTemplate }),
+            new TableItem({
+              data: weather[2].date,
+              template: this.dateTemplate,
+            }),
             new TableItem({
               data: {
-                temperature: weather.data[4].day_temperature,
-                description: weather.data[4].description,
+                temperature: weather[2].day_temperature,
+                description: weather[2].description,
               },
               template: this.iconTemplate,
             }),
             new TableItem({
               data: {
-                temperature: weather.data[4].night_temperature,
-                description: weather.data[4].description,
+                temperature: weather[2].night_temperature,
+                description: weather[2].description,
               },
               template: this.iconTemplate,
             }),
           ],
           [
-            new TableItem({ data: weather.data[5].date, template: this.dateTemplate }),
+            new TableItem({
+              data: weather[3].date,
+              template: this.dateTemplate,
+            }),
             new TableItem({
               data: {
-                temperature: weather.data[5].day_temperature,
-                description: weather.data[5].description,
+                temperature: weather[3].day_temperature,
+                description: weather[3].description,
               },
               template: this.iconTemplate,
             }),
             new TableItem({
               data: {
-                temperature: weather.data[5].night_temperature,
-                description: weather.data[5].description,
+                temperature: weather[3].night_temperature,
+                description: weather[3].description,
               },
               template: this.iconTemplate,
             }),
-          ]
+          ],
+          [
+            new TableItem({
+              data: weather[4].date,
+              template: this.dateTemplate,
+            }),
+            new TableItem({
+              data: {
+                temperature: weather[4].day_temperature,
+                description: weather[4].description,
+              },
+              template: this.iconTemplate,
+            }),
+            new TableItem({
+              data: {
+                temperature: weather[4].night_temperature,
+                description: weather[4].description,
+              },
+              template: this.iconTemplate,
+            }),
+          ],
+          [
+            new TableItem({
+              data: weather[5].date,
+              template: this.dateTemplate,
+            }),
+            new TableItem({
+              data: {
+                temperature: weather[5].day_temperature,
+                description: weather[5].description,
+              },
+              template: this.iconTemplate,
+            }),
+            new TableItem({
+              data: {
+                temperature: weather[5].night_temperature,
+                description: weather[5].description,
+              },
+              template: this.iconTemplate,
+            }),
+          ],
         ];
-        console.log(this.weather);
       });
+    // });
   }
 }

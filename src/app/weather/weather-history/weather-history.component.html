@@ -1,26 +1,19 @@
 <ng-template #iconTemplate let-data="data">
   <div class="tableCell">
-    {{data.temperature}} °С
-    <icon [description]="data.description" ></icon>
+    {{ data.temperature }} °С
+    <icon [description]="data.description"></icon>
   </div>
 </ng-template>
 <ng-template #dateTemplate let-data="data">
   <div class="date">
-    {{data | date: "EEEE"  }}
+    {{ data | date: "EEEE" }}
   </div>
 </ng-template>
 
 <table ibmTable [sortable]="false" class="container">
   <tbody ibmTableBody>
-    <tr class="row"
-          *ngFor="let row of model.data"
-          ibmTableRow
-          [row]="row">
-      <td
-              *ngFor="let item of row;"
-              ibmTableData
-              [item]="item">
-      </td>
+    <tr class="row" *ngFor="let row of model.data" ibmTableRow [row]="row">
+      <td *ngFor="let item of row" ibmTableData [item]="item"></td>
     </tr>
   </tbody>
 </table>

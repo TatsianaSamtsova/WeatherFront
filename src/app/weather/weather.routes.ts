@@ -1,5 +1,3 @@
-import {WeatherComponent} from "./weather.component";
+import { WeatherComponent } from './weather.component';
 
-export const weatherRoutes =[
-  {path: '', component: WeatherComponent}
-]
+export const weatherRoutes = [{ path: '', component: WeatherComponent }];
